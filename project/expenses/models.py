@@ -11,7 +11,7 @@ class Summary(models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     year = models.IntegerField()
     quarter = models.IntegerField()
-    
+
 class Detail(models.Model):
     bioguide_id = models.CharField(max_length=7)
     office = models.CharField(max_length=500)
