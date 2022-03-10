@@ -1,7 +1,15 @@
 from django.db import models
 
-# here we're establishing the db design and its constraints as variables
-# where models.Model is a built-in class, which we're naming Summary
+class Category(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def display_name(self):
+        return self.name.title()
+
 class Summary(models.Model):
     bioguide_id = models.CharField(max_length=7)
     office = models.CharField(max_length=500)
@@ -12,9 +20,8 @@ class Summary(models.Model):
     year = models.IntegerField()
     quarter = models.IntegerField()
 
-# this returns the string, not just the object
-def __str__(self):
-    return self.program
+    def __str__(self):
+        return self.category
 
 class Detail(models.Model):
     bioguide_id = models.CharField(max_length=7)
@@ -33,5 +40,5 @@ class Detail(models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     year = models.IntegerField()
 
-def __str__(self):
-    return self.payee
+    def __str__(self):
+        return self.payee
